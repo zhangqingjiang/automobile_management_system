@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:13306/automobile_management_system
+    username: root
+    password: zqj123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    mybatis:
+      type-aliases-package: com.zhang.automobile_management_system.bean
+      mapper-locations: classpath:mybatis/mapper/*.xml
+
+      pagehelper:
+        autoRuntimeDialect: true
+        reasonable: true
+        supportMethodsArguments: true
+        params: count=countSql
+
+
+x2: 0.001
+x3: 0.0007
+x4: 0.0005
+x5: 0.01

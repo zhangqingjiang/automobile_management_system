@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8">
+        <title>汽车商城</title>
+    </head>
+    <body>
+        <!-- 左侧侧列表-->
+        <div class="left-side sticky-left-side" th:fragment="leftList">
+
+            <div class="logo">
+                <!--主页左上方小logo-->
+                <a><img src="images/logo.png" alt=""></a>
+            </div>
+
+            <div class="left-side-inner">
+                <!--左侧选项列表-->
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li><a href="/carMessage"  ><i class="fa fa-home"></i>
+                        <span>未售车辆信息</span></a></li>
+                    <li><a href="/carMessageSale"  ><i class="fa fa-home"></i>
+                        <span>已售车辆信息</span></a></li>
+                    <li><a href="/orderMessageAdd" th:if="${session.permission} <= 4"><i class="fa fa-th-list"></i>
+                        <span>添加订单</span></a></li>
+                    <li><a href="/orderMessage"  ><i class="fa fa-th-list"></i>
+                        <span>订单信息</span></a></li>
+                    <li><a href="/afterSaleMessage"  ><i class="fa fa-laptop" ></i>
+                        <span>售后服务</span></a></li>
+                    <li><a href="/afterSaleMessageAdd" th:if="${session.permission} <= 4"><i class="fa fa-laptop"></i>
+                        <span>添加服务</span></a></li>
+                    <li><a href="/carMessageAdd" th:if="${session.permission} <= 3"><i class="fa fa-sign-in"></i>
+                        <span>车辆入库</span></a>
+                    <li><a href="/inventoryMessage"><i class="fa fa-th-list"></i>
+                        <span>库存信息</span></a></li>
+                    <li><a href="/clientMessage"  ><i class="fa fa-th-list"></i>
+                        <span>客户信息</span></a></li>
+                    <li><a href="/employee" th:if="${session.permission} <= 3"><i class="fa fa-th-list"></i>
+                        <span>员工信息</span></a></li>
+                    <li><a href="/employeeRegistration" th:if="${session.permission} <= 3"><i class="fa fa-book"></i>
+                        <span>员工注册</span></a>
+                    <li><a href="/my_message"  ><i class="fa fa-cogs" ></i>
+                        <span>个人设置</span></a></li>
+                    <li><a href="/statistics" th:if="${session.permission} <= 2"><i class="fa fa-bar-chart-o"  ></i>
+                        <span>统计图表</span></a></li>
+                    <li><a href="/system_message"  ><i class="fa fa-bullhorn"  ></i>
+                        <span>系统公告</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 左侧列表结束-->
+
+        <!--        二号上方信息栏框去掉了搜索框-->
+        <!--上方信息栏-->
+        <div class="header-section" th:fragment="header_two">
+            <!--收起右侧选项栏-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+
+            <!--个人信息设置栏-->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                    <li>
+                        <a href="" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span th:text="${session.employee.getEmployeeName()}"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right" style="background-color: #afd9ee">
+                            <li><a href="/my_message"><i class="fa fa-cog"></i> 个人设置</a></li>
+                            <li><a href="/leave"><i class="fa fa-sign-out"></i> 退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="header-section" th:fragment="header_one">
+            <!--收起右侧选项栏-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <!--查询框-->
+            <form class="searchform" th:action="@{${#httpServletRequest.getRequestURL()}}" method="get">
+                <input type="text" class="form-control" name="keyword" placeholder="查询..."/>
+                <input type="submit" class="form-control" style="width: 70px" value="查询"/>
+            </form>
+
+            <!--个人信息设置栏-->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                    <li>
+                        <a href="" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span th:text="${session.employee.getEmployeeName()}"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right" style="background-color: #afd9ee">
+                            <li><a href="/my_message"><i class="fa fa-cog"></i> 个人设置</a></li>
+                            <li><a href="/leave"><i class="fa fa-sign-out"></i> 退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div th:fragment="footer_one">
+            <!--底部页码栏-->
+            <footer>
+                <div style="align-content: center; margin-left: 350px;">
+                    <span class="span_one"></span><span class="span_one">当前页为: 第</span>
+                    <span style="font-size: 20px" th:text="${list.pageNum}"></span>
+                    <span class="span_one">页</span>
+                    <span>&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                    <a th:if="${list.hasPreviousPage}"
+                       th:href="@{${#httpServletRequest.getRequestURL()}(keyword= ${keyword})}"><span class="span_one">首页</span></a>
+                    <a th:if="${list.hasPreviousPage}"
+                       th:href="@{${#httpServletRequest.getRequestURL()}(index = ${list.prePage},keyword= ${keyword})}"><span
+                            class="span_one">上一页</span> </a>
+                    <div th:each="page :${list.navigatepageNums}" style="display:inline">
+                        <a th:href="@{${#httpServletRequest.getRequestURL()}(index = ${page},keyword= ${keyword})}"><span
+                                th:text="${page}" class="span_one"></span>
+                        </a>
+                    </div>
+                    <a th:if="${list.hasNextPage}"
+                       th:href="@{${#httpServletRequest.getRequestURL()}(index = ${list.nextPage},keyword= ${keyword})}"><span
+                            class="span_one">下一页</span> </a>
+                    <a th:if="${list.hasNextPage}"
+                       th:href="@{${#httpServletRequest.getRequestURL()}(index = ${list.pages},keyword= ${keyword})}"><span
+                            class="span_one"> 末页</span></a>
+                    <span>&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                    <span class="span_one">共计：</span><span style="font-size: 20px" th:text="${list.total}"></span>
+                    <span class="span_one">条数据</span>
+
+                    <span>&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                    <span>
+                    <form th:action="@{${#httpServletRequest.getRequestURL()}(index = ${list.pages},keyword= ${keyword})}"
+                          method="get" style="display:inline">
+                        <span class="span_one"> 前往：<input type="text" style="display:inline;width: 40px;height: 25px" pattern="^[1-9]{1}[0-9]{0,7}$"
+                                                          name="index"/>&nbsp页</span>
+                        <input type="submit" style="width: 40px;height: 22px ;font-size: 8px" value="确定">
+                    </form>
+                </span>
+                </div>
+
+                2022 &copy; 汽车商城
+            </footer>
+        </div>
+
+        <div th:fragment="footer_two">
+            <footer>
+                2022 &copy; 汽车商城
+            </footer>
+        </div>
+
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/modernizr.min.js"></script>
+        <script src="js/jquery.nicescroll.js"></script>
+
+        <!--easy pie chart-->
+        <script src="js/easypiechart/jquery.easypiechart.js"></script>
+        <script src="js/easypiechart/easypiechart-init.js"></script>
+
+        <!--Sparkline Chart-->
+        <script src="js/sparkline/jquery.sparkline.js"></script>
+        <script src="js/sparkline/sparkline-init.js"></script>
+
+        <!--icheck -->
+        <script src="js/iCheck/jquery.icheck.js"></script>
+        <script src="js/icheck-init.js"></script>
+
+        <!-- jQuery Flot Chart-->
+        <script src="js/flot-chart/jquery.flot.js"></script>
+        <script src="js/flot-chart/jquery.flot.tooltip.js"></script>
+        <script src="js/flot-chart/jquery.flot.resize.js"></script>
+        <script src="js/flot-chart/jquery.flot.pie.resize.js"></script>
+        <script src="js/flot-chart/jquery.flot.selection.js"></script>
+        <script src="js/flot-chart/jquery.flot.stack.js"></script>
+        <script src="js/flot-chart/jquery.flot.time.js"></script>
+        <script src="js/main-chart.js"></script>
+
+        <!--common scripts for all pages-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="keywords"
+              content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+        <meta name="description" content="">
+        <meta name="author" content="ThemeBucket">
+        <link rel="shortcut icon" href="" type="image/png">
+
+        <title>个人信息</title>
+
+        <!--icheck-->
+        <link href="js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+        <link href="js/iCheck/skins/square/square.css" rel="stylesheet">
+        <link href="js/iCheck/skins/square/red.css" rel="stylesheet">
+        <link href="js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+        <!--dashboard calendar-->
+        <link href="css/clndr.css" rel="stylesheet">
+
+
+        <!--common-->
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style-responsive.css" rel="stylesheet">
+
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+
+    <body class="sticky-header">
+
+        <section>
+            <!-- 右侧列表-->
+            <div th:replace="~{publicPage/commons::leftList}"></div>
+            <!-- 右侧列表结束-->
+
+            <!--上方信息栏-->
+            <div th:replace="~{publicPage/commons::header_two}"></div>
+
+            <div class="main-content">
+
+                <!--主题内容-->
+                <footer style="text-align: center">
+                    <h3>个人设置</h3></footer>
+                <!--                个人信息-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="profile-pic text-center">
+                                    <img alt="" src="images/logo.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <ul style="list-style-type: none;margin-left: 500px">
+                                    <li>
+                                        <span style="text-align: right">姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名:&nbsp&nbsp&nbsp</span>
+                                        <span th:text="${employee.employeeName}"></span>
+                                    </li>
+                                    <li>
+                                        <div class="title">员工&nbsp&nbsp&nbsp&nbspID:&nbsp&nbsp&nbsp
+                                            <span th:text="${employee.employeeId}"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="title">电话号码:&nbsp&nbsp&nbsp
+                                            <span th:text="${employee.employeePhone}"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="title">性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别:&nbsp&nbsp&nbsp
+                                            <span th:text="${employee.employeeSex}"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="title">本月工资:&nbsp&nbsp&nbsp
+                                            <span th:text="${royaltyThisD}"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="title">上月工资:&nbsp&nbsp&nbsp
+                                            <span th:text="${royaltyLastD}"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="title">权限等级:&nbsp&nbsp&nbsp
+                                            <span th:text="${employee.employeePermission}"></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <footer th:if="${session.permission} == 1">
+                            <h3 style="text-align: center">员工工资占比</h3><br>
+                            <form th:action="@{/updateSalary}" method="get" style="text-align: center">
+
+
+                                <label>经理</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="text" name="x2" th:value="${x2}">
+                                <input type="submit" value="确认" onclick="return confirm('确认修改')">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label>管理</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="text" name="x3" th:value="${x3}">
+                                <input type="submit" value="确认" onclick="return confirm('确认修改')">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label> 前台</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="text" name="x4" th:value="${x4}">
+                                <input type="submit" value="确认" onclick="return confirm('确认修改')">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label>营业员</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="text" name="x5" th:value="${x5}">
+                                <input type="submit" value="确认" onclick="return confirm('确认修改')">
+
+                            </form>
+                        </footer>
+
+                        <footer>
+                            <div class="my_style_div">
+                                <a class="my_style_a" href="/my_message_edit">修改信息</a>
+                            </div>
+
+                            <div class="my_style_div">
+                                <a class="my_style_a" href="/leave">退出系统</a>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+                <div th:replace="~{publicPage/commons::footer_two}"></div>
+            </div>
+
+        </section>
+
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/modernizr.min.js"></script>
+        <script src="js/jquery.nicescroll.js"></script>
+
+        <script src="js/easypiechart/jquery.easypiechart.js"></script>
+        <script src="js/easypiechart/easypiechart-init.js"></script>
+
+        <script src="js/sparkline/jquery.sparkline.js"></script>
+        <script src="js/sparkline/sparkline-init.js"></script>
+
+        <script src="js/iCheck/jquery.icheck.js"></script>
+        <script src="js/icheck-init.js"></script>
+
+        <script src="js/flot-chart/jquery.flot.js"></script>
+        <script src="js/flot-chart/jquery.flot.tooltip.js"></script>
+        <script src="js/flot-chart/jquery.flot.resize.js"></script>
+        <script src="js/flot-chart/jquery.flot.pie.resize.js"></script>
+        <script src="js/flot-chart/jquery.flot.selection.js"></script>
+        <script src="js/flot-chart/jquery.flot.stack.js"></script>
+        <script src="js/flot-chart/jquery.flot.time.js"></script>
+        <script src="js/main-chart.js"></script>
+
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="" type="image/png">
+    <title>汽车商城</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/jquery.stepy.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    </head>
+    <body class="sticky-header">
+        <section>
+            <div th:replace="~{publicPage/commons::leftList}"></div>
+            <!--上方信息栏-->
+
+            <!--收起右侧选项栏-->
+            <div th:replace="~{publicPage/commons::header_one}"></div>
+
+
+            </div>
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="square-widget">
+                            <div class="widget-container">
+                                <header class="panel-heading no-border">
+                                    <h3 style="text-align: center">添加订单</h3>
+                                </header>
+                                </br>
+                                </br>
+                                <form id="default" class="form-horizontal" method="post"
+                                      action="/orderMessage" style="margin-left: 200px;margin-right: auto">
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label" ></label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <label style="color: red;width: 430px" th:text="${msg}"></label>
+                                            <label style="color: green;width: 430px" th:text="${success}"></label>
+                                            <a style="text-align: right" th:if="${success}" href="/orderMessage/max" th:text="前往查看"></a>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">客户姓名</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="clientName" th:value="${client.clientName}" type="text" placeholder="客户姓名" class="form-control" pattern="^[\u4E00-u9FA5A_Za-z]{0,8}$" title="正式名称" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label" required>客户电话</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="clientPhone"  th:value="${client.clientPhone}" type="text" placeholder="客户电话" class="form-control" pattern="^[1-9][0-9]{10}$"  title="请输入电话号码" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">客户性别</label>
+                                        <div class="col-md-6 col-sm-6" style="width: 95px">
+                                            <select name="clientSex" style="width: 100px" required >
+                                                <option th:text="${client.clientSex}" style="text-align: center"></option>
+                                                <option style="text-align: center">男</option>
+                                                <option style="text-align: center">女</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label" >车辆编号</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="orderCarId" th:value="${carOrder.orderCarId}"  type="text" placeholder="车辆编号" class="form-control" pattern="^[A-Z0-9]{12}$" title="请输入车辆编号" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label" >员工编号</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="orderEmployeeId" th:value="${carOrder.orderEmployeeId}" type="text" placeholder="员工编号" class="form-control" pattern="^[A-Z0-9]{8}$" required title="员工编号">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div style="margin-right:200px;text-align: center">
+                                        <button class="btn btn-info">
+                                            提交
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:replace="~{publicPage/commons::footer_two}"></div>
+
+            </div>
+        </section>
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/modernizr.min.js"></script>
+        <script src="js/jquery.nicescroll.js"></script>
+
+        <script src="js/easypiechart/jquery.easypiechart.js"></script>
+        <script src="js/easypiechart/easypiechart-init.js"></script>
+
+        <script src="js/sparkline/jquery.sparkline.js"></script>
+        <script src="js/sparkline/sparkline-init.js"></script>
+
+        <script src="js/iCheck/jquery.icheck.js"></script>
+        <script src="js/icheck-init.js"></script>
+
+        <script src="js/flot-chart/jquery.flot.js"></script>
+        <script src="js/flot-chart/jquery.flot.tooltip.js"></script>
+        <script src="js/flot-chart/jquery.flot.resize.js"></script>
+        <script src="js/flot-chart/jquery.flot.pie.resize.js"></script>
+        <script src="js/flot-chart/jquery.flot.selection.js"></script>
+        <script src="js/flot-chart/jquery.flot.stack.js"></script>
+        <script src="js/flot-chart/jquery.flot.time.js"></script>
+        <script src="js/main-chart.js"></script>
+
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

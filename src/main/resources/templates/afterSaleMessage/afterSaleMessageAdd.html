@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="" type="image/png">
+    <title>汽车商城</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/jquery.stepy.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    </head>
+    <body class="sticky-header">
+        <section>
+            <div th:replace="~{publicPage/commons::leftList}"></div>
+            <!--上方信息栏-->
+
+            <!--收起右侧选项栏-->
+            <div th:replace="~{publicPage/commons::header_two}"></div>
+
+
+            </div>
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="square-widget">
+                            <div class="widget-container">
+                                <header class="panel-heading no-border">
+                                    <h3 style="text-align: center">添加服务</h3>
+                                </header>
+                                </br>
+                                </br>
+                                <form id="default" class="form-horizontal" method="post"
+                                      action="/afterSaleMessageAdd" style="margin-left: 200px;margin-right: auto">
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label" ></label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <label style="color: red;width: 430px" th:text="${msg}"></label>
+                                            <label style="color: green;width: 430px" th:text="${success}"></label>
+                                            <a style="text-align: right" th:if="${success}" href="/afterMessage/max" th:text="前往查看"></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">呼入电话</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="afterSaleClientPhone" th:value="${afterSale.afterSaleClientPhone}" type="text" placeholder="呼入电话" class="form-control" pattern="^[1-9][0-9]{10}$" title="" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆编号</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="afterSaleCarId" th:value="${afterSale.afterSaleCarId}" type="text" placeholder="车辆编号" class="form-control" pattern="^[A-Z][0-9]{11}$" title="">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">具体信息</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <textarea name="afterSaleMessage" rows="4" cols="67" style="word-wrap: break-word" th:text="${afterSale.afterSaleMessage}" placeholder="请输入描述信息"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">处理员工编号</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="afterSaleEmployeeId" th:value="${afterSale.afterSaleEmployeeId}" type="text" placeholder="处理员工编号" class="form-control" pattern="^[A-Z][0-9]{6,8}$" title="" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">销售员工编号</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="afterSaleEid" th:value="${afterSale.afterSaleEid}" type="text" placeholder="销售员工编号" class="form-control" pattern="^[A-Z][0-9]{6,8}$" title="" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">服务结果状态</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <select name="afterSaleState" required>
+                                                <option th:text="${afterSale.afterSaleState}" ></option>
+                                                <option >待处理</option>
+                                                <option >已处理</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div style="margin-right:200px;text-align: center">
+                                        <button class="btn btn-info">
+                                            提交
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div th:replace="~{publicPage/commons::footer_two}"></div>
+            </div>
+        </section>
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/modernizr.min.js"></script>
+        <script src="js/jquery.nicescroll.js"></script>
+
+        <!--easy pie chart-->
+        <script src="js/easypiechart/jquery.easypiechart.js"></script>
+        <script src="js/easypiechart/easypiechart-init.js"></script>
+
+        <!--Sparkline Chart-->
+        <script src="js/sparkline/jquery.sparkline.js"></script>
+        <script src="js/sparkline/sparkline-init.js"></script>
+
+        <!--icheck -->
+        <script src="js/iCheck/jquery.icheck.js"></script>
+        <script src="js/icheck-init.js"></script>
+
+        <!-- jQuery Flot Chart-->
+        <script src="js/flot-chart/jquery.flot.js"></script>
+        <script src="js/flot-chart/jquery.flot.tooltip.js"></script>
+        <script src="js/flot-chart/jquery.flot.resize.js"></script>
+        <script src="js/flot-chart/jquery.flot.pie.resize.js"></script>
+        <script src="js/flot-chart/jquery.flot.selection.js"></script>
+        <script src="js/flot-chart/jquery.flot.stack.js"></script>
+        <script src="js/flot-chart/jquery.flot.time.js"></script>
+        <script src="js/main-chart.js"></script>
+
+        <!--common scripts for all pages-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

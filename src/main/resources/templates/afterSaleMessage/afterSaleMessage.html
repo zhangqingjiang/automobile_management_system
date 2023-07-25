@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="keywords"
+              content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+        <meta name="description" content="">
+        <meta name="author" content="ThemeBucket">
+        <link rel="shortcut icon" href="" type="image/png">
+
+        <title>汽车商城</title>
+
+        <!--icheck-->
+        <link href="/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+        <link href="/js/iCheck/skins/square/square.css" rel="stylesheet">
+        <link href="/js/iCheck/skins/square/red.css" rel="stylesheet">
+        <link href="/js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+        <!--dashboard calendar-->
+        <link href="/css/clndr.css" rel="stylesheet">
+
+
+        <!--common-->
+        <link href="/css/style.css" rel="stylesheet">
+        <link href="/css/style-responsive.css" rel="stylesheet">
+
+
+
+    </head>
+
+
+    <body class="sticky-header">
+        <section>
+
+            <div th:replace="~{publicPage/commons::leftList}"></div>
+
+            <div th:replace="~{publicPage/commons::header_one}"></div>
+
+            <div class="main-content">
+
+                <div class="row">
+                    <section>
+                        <header class="panel-heading no-border">
+                            <h3 style="text-align: center">售后服务</h3>
+                        </header>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th class="table_one">序号</th>
+                                    <th class="table_one">销售时间</th>
+                                    <th class="table_one">客户编号</th>
+                                    <th class="table_one">呼入电话</th>
+                                    <th class="table_one">具体信息</th>
+                                    <th class="table_one">处理员工</th>
+                                    <th class="table_one">销售员工</th>
+                                    <th class="table_one">处理状态</th>
+                                    <th class="table_one" th:if="${session.permission} <= 4">其它操作</th>
+                                </tr>
+                                </thead>
+
+                                <!--                                for循环将数据写在下方-->
+                                <tbody>
+                                <tr th:each="temp,status:${list.list}">
+
+
+                                    <td class="table_one" th:text="${status.count}"></td>
+
+                                    <td class="table_one" th:text="${temp.afterSaleDate}"></td>
+
+                                    <td class="table_one" th:text="${temp.afterSaleClientId}"></td>
+
+                                    <td class="table_one" th:text="${temp.afterSaleClientPhone}"></td>
+
+                                    <td class="table_one" th:text="${temp.afterSaleMessage}"></td>
+
+                                    <td class="table_one" th:text="${temp.afterSaleEmployeeId}"></td>
+
+                                    <td class="table_one" th:text="${temp.afterSaleEid}"></td>
+
+                                    <td class="table_one" th:text="${temp.afterSaleState}"></td>
+
+                                    <td class="table_one"  th:if="${session.permission} <= 4">
+                                        <form th:action="@{/afterSaleUpdate}" method="get" style="text-align: center">
+                                            <input type="hidden" name="afterSaleDate" th:value="${temp.afterSaleDate}">
+
+                                            <input type="hidden" name="index" th:value="${list.pageNum}">
+                                            <input type="hidden" name="keyworde" th:value="${keyword}">
+
+                                            <input type="hidden" name="afterSaleClientId" th:value="${temp.afterSaleClientId}">
+                                            <select name="state" required>
+                                                <option th:text="${temp.afterSaleState}"></option>
+                                                <option>处理中</option>
+                                                <option>已完成</option>
+                                            </select>
+                                            <input type="submit" value="确认" onclick="return confirm('确认修改')">
+                                        </form>
+                                        <!--carId车辆编号  pageNum：当前页码 ，keyword：查询关键字-->
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+                <br>
+                <br>
+                <div th:replace="~{publicPage/commons::footer_one}"></div>
+            </div>
+        </section>
+        <!-- Placed js at the end of the document so the pages load faster -->
+        <script src="/js/jquery-1.10.2.min.js"></script>
+        <script src="/js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="/js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/modernizr.min.js"></script>
+        <script src="/js/jquery.nicescroll.js"></script>
+
+        <!--easy pie chart-->
+        <script src="/js/easypiechart/jquery.easypiechart.js"></script>
+        <script src="/js/easypiechart/easypiechart-init.js"></script>
+
+        <!--Sparkline Chart-->
+        <script src="/js/sparkline/jquery.sparkline.js"></script>
+        <script src="/js/sparkline/sparkline-init.js"></script>
+
+        <!--icheck -->
+        <script src="/js/iCheck/jquery.icheck.js"></script>
+        <script src="/js/icheck-init.js"></script>
+
+        <!-- jQuery Flot Chart-->
+        <script src="/js/flot-chart/jquery.flot.js"></script>
+        <script src="/js/flot-chart/jquery.flot.tooltip.js"></script>
+        <script src="/js/flot-chart/jquery.flot.resize.js"></script>
+        <script src="/js/flot-chart/jquery.flot.pie.resize.js"></script>
+        <script src="/js/flot-chart/jquery.flot.selection.js"></script>
+        <script src="/js/flot-chart/jquery.flot.stack.js"></script>
+        <script src="/js/flot-chart/jquery.flot.time.js"></script>
+        <script src="/js/main-chart.js"></script>
+
+        <!--common scripts for all pages-->
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>

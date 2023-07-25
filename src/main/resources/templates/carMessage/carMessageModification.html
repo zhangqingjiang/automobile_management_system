@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="" type="image/png">
+    <title>汽车商城</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/jquery.stepy.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet">
+    </head>
+    <body class="sticky-header">
+        <section>
+            <div th:replace="~{publicPage/commons::leftList}"></div>
+            <!--上方信息栏-->
+            <div th:replace="~{publicPage/commons::header_two}"></div>
+
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="square-widget">
+                            <div class="widget-container">
+                                <header class="panel-heading no-border">
+                                    <h3 style="text-align: center">车辆信息修改</h3>
+                                </header>
+                                </br>
+                                </br>
+                                <form id="default" class="form-horizontal" method="post"
+                                      th:action="@{/carMessageModification}"
+                                      style="margin-left: 200px;margin-right: auto">
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label"></label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <label style="color: red" th:text="${msg}"></label>
+                                            <label style="color: green" th:text="${session.success}"></label>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆编号</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="carId" th:value="${carMessage.carId}" type="text"
+                                                   placeholder="车辆编号" class="form-control" pattern="^[A-Z0-9]{12}$"
+                                                   title="请输入大写字母和数字组成的12位编码" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">入库编号</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="carStockId" th:value="${carMessage.carStockId}" type="text"
+                                                   placeholder="入库编号" class="form-control" pattern="^[A-Z0-9]{12}$"
+                                                   title="请输入大写字母和数字组成的12位编码" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆名称</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="carName" th:value="${carMessage.carName}" type="text"
+                                                   placeholder="车辆名称" class="form-control"
+                                                   pattern="^[\u4E00-u9FA5A_Za-z0-9]{2,20}$" title="请输入车辆的正式名称"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label" required>车辆品牌</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="carBrand" th:value="${carMessage.carBrand}" type="text"
+                                                   placeholder="车辆品牌" class="form-control"
+                                                   pattern="^[\u4E00-u9FA5A_Za-z0-9]{2,20}$" title="请输入车辆的具体品牌"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆版本</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="carVersion" th:value="${carMessage.carVersion}" type="text"
+                                                   placeholder="车辆版本" class="form-control"
+                                                   pattern="^([0-9])+(.[0-9]{1,2})" title="请输入车辆的具体版本号" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆类型</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="carType" th:value="${carMessage.carType}" type="text"
+                                                   placeholder="车辆类型" class="form-control" pattern="^[A-Z]{3,4}$"
+                                                   title="请输入由3到5位大写字母组成的版本号" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆排量</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="carDisplacement" th:value="${carMessage.carDisplacement}"
+                                                   type="text" placeholder="车辆排量" class="form-control"
+                                                   pattern="^([0-9])+(.[0-9]{1，2})$" required title="请输入由数字组成的车辆排量">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆颜色</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="carColor" th:value="${carMessage.carColor}" type="text"
+                                                   placeholder="车辆颜色" class="form-control" required
+                                                   pattern="^[\u4E00-u9FA5A]{2,4}$" title="请输入车辆的具体颜色">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆定价</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="carPrice" th:value="${carMessage.carPrice}" type="text"
+                                                   placeholder="车辆价格" class="form-control"
+                                                   pattern="^([1-9][0-9]{4,6})+(.[0-9]{2,2})$"
+                                                   title="请输入最少6位最多9位带有两位小数的价格" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆供应商</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input name="carProvide" th:value="${carMessage.carProvide}" type="text"
+                                                   placeholder="车辆价格" class="form-control"
+                                                   pattern="^[A-Z][0-9]{4}$"
+                                                   title="以大写字母开头的供应商编号" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆变速方式</label>
+                                        <div class="col-md-6 col-sm-6" style="width: 50px">
+                                            <select name="carGearbox" required>
+                                                <option style="width: 80px" th:text="${carMessage.carGearbox}"></option>
+                                                <option style="text-align: center">手动</option>
+                                                <option style="text-align: center">自动</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">车辆使用能源</label>
+                                        <div class="col-md-6 col-sm-6" style="width: 50px">
+                                            <select name="carEnergy" required>
+                                                <option style="width: 80px" th:text="${carMessage.carEnergy}"></option>
+                                                <option style="text-align: center">电能</option>
+                                                <option style="text-align: center">汽油</option>
+                                                <option style="text-align: center">油电</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div style="margin-right:200px;text-align: center">
+                                        <button class="btn btn-info">
+                                            提交
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:replace="~{publicPage/commons::footer_two}"></div>
+
+            </div>
+        </section>
+        <script src="/js/jquery-1.10.2.min.js"></script>
+        <script src="/js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="/js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/modernizr.min.js"></script>
+        <script src="/js/jquery.nicescroll.js"></script>
+
+        <!--easy pie chart-->
+        <script src="/js/easypiechart/jquery.easypiechart.js"></script>
+        <script src="/js/easypiechart/easypiechart-init.js"></script>
+
+        <!--Sparkline Chart-->
+        <script src="/js/sparkline/jquery.sparkline.js"></script>
+        <script src="/js/sparkline/sparkline-init.js"></script>
+
+        <!--icheck -->
+        <script src="/js/iCheck/jquery.icheck.js"></script>
+        <script src="/js/icheck-init.js"></script>
+
+        <!-- jQuery Flot Chart-->
+        <script src="/js/flot-chart/jquery.flot.js"></script>
+        <script src="/js/flot-chart/jquery.flot.tooltip.js"></script>
+        <script src="/js/flot-chart/jquery.flot.resize.js"></script>
+        <script src="/js/flot-chart/jquery.flot.pie.resize.js"></script>
+        <script src="/js/flot-chart/jquery.flot.selection.js"></script>
+        <script src="/js/flot-chart/jquery.flot.stack.js"></script>
+        <script src="/js/flot-chart/jquery.flot.time.js"></script>
+        <script src="/js/main-chart.js"></script>
+
+        <!--common scripts for all pages-->
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>

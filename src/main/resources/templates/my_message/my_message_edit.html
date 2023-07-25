@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="" type="image/png">
+    <title>汽车商城</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/jquery.stepy.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    </head>
+    <body class="sticky-header">
+        <section>
+            <div th:replace="~{publicPage/commons::leftList}"></div>
+            <!--上方信息栏-->
+            <div th:replace="~{publicPage/commons::header_two}"></div>
+
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="square-widget">
+                            <div class="widget-container">
+                                <header class="panel-heading no-border">
+                                    <h3 style="text-align: center">信息修改</h3>
+                                </header>
+                                </br>
+                                </br>
+                                <form id="default" class="form-horizontal" action="/my_message_edit" method="post"
+                                      style="margin-left: 200px;margin-right: auto">
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label" ></label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <label style="color: red;width: 430px" th:text="${msg}"></label>
+                                    </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">员工编号</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input type="text" placeholder="员工编号" class="form-control"
+                                                   name="employeeId"
+                                                   th:value="${employeeId}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">电话号码</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input type="text" placeholder="请输入新的电话号码" class="form-control"
+                                                   name="employeePhone"
+                                                   th:value="${employeePhone}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label">密码</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input type="password" placeholder="请输入新的密码" class="form-control"
+                                                   name="password">
+                                        </div>
+                                    </div>
+
+
+                                    <br>
+                                    <div style="margin-right:200px;text-align: center">
+                                        <button>
+                                            提交
+                                        </button>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:replace="~{publicPage/commons::footer_two}"></div>
+
+            </div>
+        </section>
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/modernizr.min.js"></script>
+        <script src="js/jquery.nicescroll.js"></script>
+
+        <!--easy pie chart-->
+        <script src="js/easypiechart/jquery.easypiechart.js"></script>
+        <script src="js/easypiechart/easypiechart-init.js"></script>
+
+        <!--Sparkline Chart-->
+        <script src="js/sparkline/jquery.sparkline.js"></script>
+        <script src="js/sparkline/sparkline-init.js"></script>
+
+        <!--icheck -->
+        <script src="js/iCheck/jquery.icheck.js"></script>
+        <script src="js/icheck-init.js"></script>
+
+        <!-- jQuery Flot Chart-->
+        <script src="js/flot-chart/jquery.flot.js"></script>
+        <script src="js/flot-chart/jquery.flot.tooltip.js"></script>
+        <script src="js/flot-chart/jquery.flot.resize.js"></script>
+        <script src="js/flot-chart/jquery.flot.pie.resize.js"></script>
+        <script src="js/flot-chart/jquery.flot.selection.js"></script>
+        <script src="js/flot-chart/jquery.flot.stack.js"></script>
+        <script src="js/flot-chart/jquery.flot.time.js"></script>
+        <script src="js/main-chart.js"></script>
+
+        <!--common scripts for all pages-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
